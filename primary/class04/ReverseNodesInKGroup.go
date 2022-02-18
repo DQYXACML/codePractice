@@ -6,9 +6,10 @@ func ReverseNodesInKGroup(head *ListNode) *ListNode {
 }
 
 func getKGroupEnd(head *ListNode, k int) *ListNode {
-	k--
+	k-- // 前一个
 	for k != 0 && head != nil {
 		head = head.Next
+		k--
 	}
 	return head
 }
@@ -28,7 +29,7 @@ func GetListLength(head *ListNode) int {
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	start := head
 	end := getKGroupEnd(start, k)
-	if end == nil {
+	if end == nil { // 够k个一组进行反转
 		return head
 	}
 	head = end // 找到第一组待反转的节点，反转后的头即现在的尾
@@ -48,7 +49,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 }
 
 func reverse(head, end *ListNode) {
-	end = end.Next // 需要由head串起后面的节点
+	end = end.Next // 获取到待反转的后一个节点，以便于串起整个节点
 	pre := &ListNode{}
 	cur := head
 	next := &ListNode{}

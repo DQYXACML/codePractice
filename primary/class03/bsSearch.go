@@ -9,7 +9,7 @@ func bsSearch(arr []int, num int) bool {
 	R := len(arr) - 1
 	for L <= R {
 		mid := (L + R) / 2
-		if arr[mid]==num {
+		if arr[mid] == num {
 			return true
 		} else if arr[mid] > num {
 			R = mid - 1

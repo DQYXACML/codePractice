@@ -3,7 +3,7 @@ package main
 // 局部最小值
 // 相邻的数不想等
 func bsAwesome(arr []int) int {
-	if arr == nil || len(arr) ==0 {
+	if arr == nil || len(arr) == 0 {
 		return -1
 	}
 	// 开头是否下降趋势
@@ -16,11 +16,11 @@ func bsAwesome(arr []int) int {
 		return 0
 	}
 	L := 0
-	R := len(arr)-1
+	R := len(arr) - 1
 	// 上面两个if不满足即肯定有局部最小
-	for L < R - 1 {
-		mid := (L+R) / 2
-		if arr[mid] < arr[mid-1] && arr[mid] < arr[mid +1] {
+	for L < R-1 {
+		mid := (L + R) / 2
+		if arr[mid] < arr[mid-1] && arr[mid] < arr[mid+1] {
 			return mid
 		} else if arr[mid] > arr[mid-1] {
 			R = mid - 1
@@ -30,7 +30,7 @@ func bsAwesome(arr []int) int {
 	}
 	if arr[L] < arr[R] {
 		return L
-	}else {
+	} else {
 		return R
 	}
 }

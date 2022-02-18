@@ -37,3 +37,37 @@ func MergeTwoSortedList(h1, h2 *ListNode) *ListNode {
 	}
 	return head
 }
+
+// 更容易理解
+func mergeTwoLists(l1, l2 *ListNode) *ListNode {
+	head := &ListNode{}
+	if l1.Value > l2.Value {
+		head = &ListNode{
+			Value: 0,
+			Next:  l1,
+		}
+	} else {
+		head = &ListNode{
+			Value: 0,
+			Next:  l2,
+		}
+	}
+	cur := head
+	for l1 != nil && l2 != nil {
+		if l1.Value > l2.Value {
+			cur.Next = l2
+			l2 = l2.Next
+		} else {
+			cur.Next = l1
+			l1 = l1.Next
+		}
+		cur = cur.Next
+	}
+	if l1 != nil {
+		cur.Next = l1
+	}
+	if l2 != nil {
+		cur.Next = l2
+	}
+	return head.Next
+}

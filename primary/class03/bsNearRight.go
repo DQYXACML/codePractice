@@ -1,7 +1,7 @@
 package main
 
 func bsNearRight(arr []int, num int) int {
-	if arr == nil || len(arr) ==0 {
+	if arr == nil || len(arr) == 0 {
 		return -1
 	}
 	L := 0
