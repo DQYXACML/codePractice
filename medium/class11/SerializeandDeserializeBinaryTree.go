@@ -30,7 +30,7 @@ func (this *Codec) serialize(root *TreeNode) string {
 		this.builder.WriteString("#,")
 		return ""
 	}
-	this.builder.WriteString(strconv.Itoa(root.Val)+",")
+	this.builder.WriteString(strconv.Itoa(root.Val) + ",")
 	this.serialize(root.Left)
 	this.serialize(root.Right)
 	return this.builder.String()
@@ -38,10 +38,10 @@ func (this *Codec) serialize(root *TreeNode) string {
 
 // Deserializes your encoded data to tree.
 func (this *Codec) deserialize(data string) *TreeNode {
-	if data=="" {
+	if data == "" {
 		return nil
 	}
-	this.input = strings.Split(data,",")
+	this.input = strings.Split(data, ",")
 	return this.descrializeHelper()
 }
 
@@ -59,7 +59,6 @@ func (this *Codec) descrializeHelper() *TreeNode {
 		Right: this.descrializeHelper(),
 	}
 }
-
 
 /**
  * Your Codec object will be instantiated and called as such:

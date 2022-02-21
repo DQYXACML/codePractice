@@ -37,9 +37,9 @@ func levelOrderBottom(root *TreeNode) [][]int {
 	if res == nil {
 		return nil
 	}
-	ans := make([][]int,0,len(res))
+	ans := make([][]int, 0, len(res))
 	for i := len(res) - 1; i >= 0; i-- {
-		ans = append(ans,res[i])
+		ans = append(ans, res[i])
 	}
 	return ans
 }
