@@ -1,38 +1,32 @@
 package main
 
-import (
-	"container/list"
-
-	"codePractice/tool/queue"
-)
-
 type TreeNode struct {
-	Value int
-	Left  *TreeNode
+	Val  int
+	Left *TreeNode
 	Right *TreeNode
 }
 
-// 测试链接：https://leetcode.com/problems/binary-tree-level-order-traversal-ii
-func BinaryTreeLevelOrderTraversalII(root *TreeNode) *list.List {
-	ans := list.New()
-	if root != nil {
-		return ans
+// 测试链接：https://leetcode.com/problems/binary-tree-level-order-traversal
+func levelOrder(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
 	}
-	q := queue.New()
-	q.Push(root)
-	for q.IsEmpty() {
-		curAns := list.New()
-		for i := 0; i < q.Len(); i++ {
-			cur := q.Pop()
-			curAns.PushBack(cur.(*TreeNode).Value)
-			if cur.(*TreeNode).Left != nil {
-				q.Push(cur)
+	ans := make([][]int,0)
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		N := len(queue)
+		curAns := make([]int,0,N)
+		for i := 0; i <N; i++ {
+			if queue[i].Left != nil {
+				queue = append(queue,queue[i].Left)
 			}
-			if cur.(*TreeNode).Right != nil {
-				q.Push(cur)
+			if queue[i].Right != nil {
+				queue = append(queue,queue[i].Right)
 			}
+			curAns = append(curAns,queue[i].Val)
 		}
-		ans.PushBack(curAns)
+		queue = queue[N:]
+		ans = append(ans,curAns)
 	}
 	return ans
 }

@@ -8,9 +8,9 @@ func pathSum(root *TreeNode, sum int) bool {
 	}
 	// 叶子节点
 	if root.Left == nil && root.Right == nil {
-		if root.Value == sum {
+		if root.Val == sum {
 			return true
 		}
 	}
-	return pathSum(root.Left, sum-root.Value) || pathSum(root.Right, sum-root.Value)
+	return pathSum(root.Left, sum-root.Val) || pathSum(root.Right, sum-root.Val)
 }

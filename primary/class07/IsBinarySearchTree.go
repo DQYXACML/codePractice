@@ -22,7 +22,7 @@ func processIsBst(root *TreeNode) *Info {
 	leftInfo := processIsBst(root.Left)
 	rightInfo := processIsBst(root.Right)
 	// 收集左右后，本层如何处理自己的数据
-	min, max := root.Value, root.Value
+	min, max := root.Val, root.Val
 	if leftInfo != nil {
 		max = leftInfo.maxVal
 		min = leftInfo.minVal
@@ -41,14 +41,14 @@ func processIsBst(root *TreeNode) *Info {
 		leftMaxLessRoot = true
 	} else {
 		leftIsBst = leftInfo.isBSTree
-		leftMaxLessRoot = leftInfo.maxVal < root.Value
+		leftMaxLessRoot = leftInfo.maxVal < root.Val
 	}
 	if rightInfo == nil {
 		rightIsBst = true
 		rightMinMoreRoot = true
 	} else {
 		rightIsBst = rightInfo.isBSTree
-		rightMinMoreRoot = rightInfo.minVal > root.Value
+		rightMinMoreRoot = rightInfo.minVal > root.Val
 	}
 	// 右数最小值
 	if rightIsBst && leftIsBst && leftMaxLessRoot && rightMinMoreRoot {
