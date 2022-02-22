@@ -4,6 +4,7 @@ import (
 	"math"
 )
 
+// 应该使用节点数和高度的关系来算
 type fullInfo struct {
 	height int
 	isFull bool
