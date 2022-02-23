@@ -1,18 +1,6 @@
 package main
 
 // https://leetcode.com/problems/reverse-nodes-in-k-group
-func ReverseNodesInKGroup(head *ListNode) *ListNode {
-	return nil
-}
-
-func getKGroupEnd(head *ListNode, k int) *ListNode {
-	k-- // 前一个
-	for k != 0 && head != nil {
-		head = head.Next
-		k--
-	}
-	return head
-}
 
 func GetListLength(head *ListNode) int {
 	if head == nil {
@@ -26,15 +14,27 @@ func GetListLength(head *ListNode) int {
 	return length
 }
 
+func getKGroupEnd(head *ListNode, k int) *ListNode {
+	k-- // 需要减去当前节点的个数，即如果k=2，即2个元素反转，从第i个开始已经算一个了，此处只要找剩下的k-1个即可
+	for k != 0 && head != nil {
+		head = head.Next
+		k--
+	}
+	return head
+}
+
+// [1,2,3,4,5]
+// 2
+
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	start := head
 	end := getKGroupEnd(start, k)
 	if end == nil { // 够k个一组进行反转
 		return head
 	}
-	head = end // 找到第一组待反转的节点，反转后的头即现在的尾
-	reverse(start, end)
-	lastEnd := start // 上一组的尾节点
+	head = end          // 找到第一组待反转的节点，反转后的头即现在的尾
+	reverse(start, end) // start 经过这一步start已经将链表串了起来
+	lastEnd := start    // 上一组的尾节点，即反转前的首节点
 	for lastEnd != nil {
 		start = lastEnd.Next // 下一组的头节点
 		end = getKGroupEnd(start, k)
