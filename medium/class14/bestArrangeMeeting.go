@@ -4,6 +4,8 @@ import (
 	"sort"
 )
 
+// https://leetcode.com/problems/meeting-rooms-ii/
+
 type Arrange struct {
 	Begin int
 	End   int
